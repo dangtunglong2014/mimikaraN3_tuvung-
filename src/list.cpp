@@ -75,7 +75,7 @@ void list::empty(){
 	if (root == NULL) return;
 	node* itr = root;
 	node* itr_next = root->getNext();
-	while(itr_next != NULL){
+	while(itr_next->getNext() != NULL){
 		itr->setNext(itr_next->getNext());
 		free(itr_next);
 		itr_next = itr->getNext();
