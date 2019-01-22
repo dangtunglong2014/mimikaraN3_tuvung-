@@ -75,17 +75,12 @@ void list::empty(){
 	if (root == NULL) return;
 	node* itr = root;
 	node* itr_next = root->getNext();
-	if (itr_next == NULL){
-		free(root);
-		return;
-	}
-	while(itr_next != top->getNext()){
-		free(itr);
-		itr = itr_next;
+	while(itr_next != NULL){
+		itr->setNext(itr_next->getNext());
+		free(itr_next);
 		itr_next = itr->getNext();
 	}
-	root = itr_next;
-	top = itr_next;
+	free(root);
 }
 
 // void list::test(){
