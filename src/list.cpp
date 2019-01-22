@@ -72,14 +72,19 @@ void list::display(){
 }
 
 void list::empty(){
+	unround();
 	if (root == NULL) return;
-	node* itr = root;
-	node* itr_next = root->getNext();
-	while(itr_next->getNext() != NULL){
-		itr->setNext(itr_next->getNext());
-		free(itr_next);
-		itr_next = itr->getNext();
+	node* itr = root->getNext();
+	if (itr == NULL){
+		free(root);
+		return;
 	}
+	while(itr->getNext() != NULL){
+		root->setNext(itr->getNext());
+		free(itr);
+		itr = root->getNext();
+	}
+	free(itr);
 	free(root);
 }
 
